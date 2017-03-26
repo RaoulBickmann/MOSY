@@ -34,7 +34,7 @@ function initialize(){
 	let coloredSquare = new ColoredSquare(10, 20, 50, "rgba(0, 255, 122, 0.4)");
 	coloredSquare.draw(ctx);
 
-	// mousemove EventListener
+	//mousemove EventListener
 	function onMouseMove(e) {
 		const x = e.pageX;
 		const y = e.pageY;
@@ -45,8 +45,21 @@ function initialize(){
 		coloredSquare.fillStyle = "rgba(0, 255, 122, 0.4)";
 		coloredSquare.draw(ctx);
 	}
+
+
+
+	function onMouseDown(e) {
+		e.currentTarget.addEventListener("mousemove", onMouseMove)
+	
+	}
+	
+	function onMouseUp(e) {
+		container.removeEventListener("mousemove", onMouseMove);
+	}
+
 	const container = document.getElementById("container");
-	container.addEventListener("mousemove", onMouseMove);
+	container.addEventListener("mousedown", onMouseDown);
+	container.addEventListener("mouseup", onMouseUp);
 
 }	
 
